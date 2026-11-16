@@ -1,0 +1,53 @@
+---
+import { socials } from '@data/socials';
+import SocialIcon from '@components/SocialIcon.astro';
+
+interface Props {
+  /** icon: アイコンのみ横並び (フッター) / card: カード型 (ページ本文) */
+  variant?: 'icon' | 'card';
+}
+
+const { variant = 'icon' } = Astro.props;
+---
+
+{
+  variant === 'icon' ? (
+    <ul class="flex items-center gap-1">
+      {socials.map((s) => (
+        <li>
+          <a
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={s.label}
+            title={s.label}
+            class="flex size-9 items-center justify-center rounded-full text-muted hover:bg-accent-soft hover:text-accent"
+          >
+            <SocialIcon id={s.id} class="size-[18px]" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  ) : (
+    <ul class="grid gap-3 sm:grid-cols-3">
+      {socials.map((s) => (
+        <li>
+          <a
+            href={s.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center gap-3 rounded-card border border-line bg-bg p-4 hover:border-accent"
+          >
+            <span class="flex size-10 shrink-0 items-center justify-center rounded-full bg-surface text-ink group-hover:bg-accent-soft group-hover:text-accent">
+              <SocialIcon id={s.id} />
+            </span>
+            <span class="min-w-0 leading-snug">
+              <span class="block text-sm font-semibold">{s.label}</span>
+              <span class="block truncate text-sm text-muted">{s.handle}</span>
+            </span>
+          </a>
+        </li>
+      ))}
+    </ul>
+  )
+}

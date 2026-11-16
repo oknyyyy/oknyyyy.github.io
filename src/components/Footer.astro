@@ -1,0 +1,15 @@
+---
+import { site } from '@data/site';
+import SocialLinks from '@components/SocialLinks.astro';
+
+const year = new Date().getFullYear();
+---
+
+<footer class="border-t border-line bg-surface">
+  <div
+    class="container-page flex flex-col-reverse items-center gap-4 py-8 sm:flex-row sm:justify-between"
+  >
+    <p class="text-sm text-muted">&copy; {year} {site.name}</p>
+    <SocialLinks variant="icon" />
+  </div>
+</footer>
