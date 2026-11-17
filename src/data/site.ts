@@ -4,7 +4,7 @@ export const site = {
   description: 'oknyyyyのウェブサイト',
   role: 'Full Stack Developer / Infrastructure Engineer',
   /** OGP画像 */
-  ogImage: undefined as string | undefined,
+  ogImage: '/ogp.png' as string | undefined,
 };
 
 /** ヘッダーのナビゲーション */
