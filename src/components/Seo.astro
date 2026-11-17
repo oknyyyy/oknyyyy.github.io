@@ -8,6 +8,8 @@ export interface Props {
   /** public/ からのパス、または絶対URL */
   image?: string;
   type?: 'website' | 'article';
+  /** 検索エンジンにインデックスさせない (404 など) */
+  noindex?: boolean;
 }
 
 const {
@@ -15,6 +17,7 @@ const {
   description = site.description,
   image = site.ogImage,
   type = 'website',
+  noindex = false,
 } = Astro.props;
 
 const fullTitle = title ? `${title} | ${site.title}` : site.title;
@@ -24,7 +27,7 @@ const imageUrl = image ? new URL(image, Astro.site).href : undefined;
 
 <title>{fullTitle}</title>
 <meta name="description" content={description} />
-<link rel="canonical" href={canonical} />
+{noindex ? <meta name="robots" content="noindex" /> : <link rel="canonical" href={canonical} />}
 
 <meta property="og:type" content={type} />
 <meta property="og:site_name" content={site.title} />
