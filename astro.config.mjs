@@ -7,6 +7,11 @@ import sitemap from '@astrojs/sitemap';
 export default defineConfig({
   site: 'https://oknyyyy.dev',
   integrations: [sitemap()],
+  markdown: {
+    shikiConfig: {
+      theme: 'github-light',
+    },
+  },
   vite: {
     plugins: [tailwindcss()],
   },

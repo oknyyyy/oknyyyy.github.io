@@ -76,3 +76,88 @@
     @apply bg-accent-soft text-accent-hover;
   }
 }
+
+/*
+ * ブログ本文 (Markdown) 用のスタイル
+ * BlogPostLayout の <div class="prose"> の中だけに効く
+ */
+@layer components {
+  .prose {
+    @apply text-base md:text-[17px];
+    overflow-wrap: anywhere;
+
+    & > * + * {
+      @apply mt-6;
+    }
+
+    & h2 {
+      @apply mt-14 border-b border-line pb-2 text-2xl;
+    }
+    & h3 {
+      @apply mt-10 text-xl;
+    }
+    & h4 {
+      @apply mt-8 font-bold;
+    }
+
+    & a {
+      @apply text-accent underline decoration-accent/40 underline-offset-4 hover:decoration-accent;
+    }
+    & strong {
+      @apply font-bold;
+    }
+
+    & ul,
+    & ol {
+      @apply space-y-2 pl-6;
+    }
+    & ul {
+      @apply list-disc marker:text-accent;
+    }
+    & ol {
+      @apply list-decimal marker:text-muted;
+    }
+    & li > ul,
+    & li > ol {
+      @apply mt-2;
+    }
+
+    & blockquote {
+      @apply border-l-4 border-accent-soft pl-4 text-muted;
+    }
+
+    & hr {
+      @apply my-12 border-line;
+    }
+
+    & img {
+      @apply rounded-card border border-line;
+    }
+
+    /* インラインコード */
+    & :not(pre) > code {
+      @apply rounded bg-surface px-1.5 py-0.5 font-mono text-[0.875em] text-accent-hover;
+      border: 1px solid var(--color-line);
+    }
+
+    /* コードブロック (Shiki) */
+    & pre {
+      @apply overflow-x-auto rounded-card border border-line p-4 font-mono text-sm leading-relaxed;
+    }
+    & pre code {
+      font-family: inherit;
+    }
+
+    & table {
+      @apply block w-full overflow-x-auto text-sm;
+      border-collapse: collapse;
+    }
+    & th,
+    & td {
+      @apply border border-line px-3 py-2 text-left;
+    }
+    & th {
+      @apply bg-surface font-semibold;
+    }
+  }
+}
